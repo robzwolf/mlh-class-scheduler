@@ -15,18 +15,18 @@
 
     <script type="text/javascript">
       // Client ID and API key from the Developer Console
-      var CLIENT_ID = '405680604166-el98hft068p8406vamspbdjktf1g8jil.apps.googleusercontent.com';
-      var API_KEY = 'AIzaSyCrV6e93iPSMDyYVn5lY_irZDZSvgaO-4M';
+      const CLIENT_ID = '405680604166-el98hft068p8406vamspbdjktf1g8jil.apps.googleusercontent.com';
+      const API_KEY = 'AIzaSyCrV6e93iPSMDyYVn5lY_irZDZSvgaO-4M';
 
       // Array of API discovery doc URLs for APIs used by the quickstart
-      var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+      const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
 
       // Authorization scopes required by the API; multiple scopes can be
       // included, separated by spaces.
-      var SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
+      const SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
 
-      var authorizeButton = document.getElementById('authorize_button');
-      var signoutButton = document.getElementById('signout_button');
+      const authorizeButton = document.getElementById('authorize_button');
+      const signoutButton = document.getElementById('signout_button');
 
       /**
        *  On load, called to load the auth2 library and API client library.
@@ -113,18 +113,15 @@
           'maxResults': 10,
           'orderBy': 'startTime'
         }).then(function(response) {
-          var events = response.result.items;
+          const events = response.result.items;
           appendPre('Upcoming events:');
 
           if (events.length > 0) {
-            for (i = 0; i < events.length; i++) {
-              var event = events[i];
-              var when = event.start.dateTime;
-              if (!when) {
-                when = event.start.date;
-              }
-              appendPre(event.summary + ' (' + when + ')')
-            }
+            events.forEach(event => {
+                const when = event.start.dateTime || event.start.date;
+                appendPre(`${event.summary} (${when})`);
+            })
+
           } else {
             appendPre('No upcoming events found.');
           }
