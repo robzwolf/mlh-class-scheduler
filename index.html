@@ -3,6 +3,13 @@
   <head>
     <title>Google Calendar API Quickstart</title>
     <meta charset="utf-8" />
+
+    <!-- Load React -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- Load Babel -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
   </head>
   <body>
     <p>Google Calendar API Quickstart</p>
@@ -13,7 +20,7 @@
 
     <pre id="content" style="white-space: pre-wrap;"></pre>
 
-    <script type="text/javascript">
+    <script type="text/babel">
       // Client ID and API key from the Developer Console
       const CLIENT_ID = '405680604166-el98hft068p8406vamspbdjktf1g8jil.apps.googleusercontent.com';
       const API_KEY = 'AIzaSyCrV6e93iPSMDyYVn5lY_irZDZSvgaO-4M';
