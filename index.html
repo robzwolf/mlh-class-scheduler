@@ -144,7 +144,7 @@
         function listUpcomingEvents() {
             gapi.client.calendar.events.list({
                 'calendarId': 'primary',
-                'timeMin': (new Date()).toISOString(),
+                'timeMin': dayjs().startOf("week").add(1, "day").toISOString(),
                 'showDeleted': false,
                 'singleEvents': true,
                 'maxResults': 10,
@@ -166,11 +166,14 @@
                         (<div>
                             
                             <div id="scheduler">
-                                <Event 
-                                    title="Meeting"
-                                    startTime={dayjs("2021-03-17T12:48:00Z")}
-                                    endTime={dayjs("2021-03-17T23:30:00Z")}
-                                />
+                                {events.map(event => {
+                                    return (<Event
+                                        title={event.summary}
+                                        startTime={dayjs(event.start.dateTime || event.start.date)}
+                                        endTime={dayjs(event.end.dateTime || event.end.date)}
+                                    />)
+                                })}
+
                             </div>
 
                         </div>)
