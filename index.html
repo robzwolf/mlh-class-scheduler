@@ -25,13 +25,17 @@
             display: grid;
             width: 100%;
             height: 750px;
-            background: red;
+            background: #f4c4c4;
             grid-template-columns: repeat(7, 1fr);
             grid-template-rows: repeat(calc(24 * 60), 1fr);
             font-size: 10pt;
+            font-family: Arial;
         }
 
-
+        .event {
+            border: 1px solid blue;
+            background: white;
+        }
 
     
     </style>
@@ -164,7 +168,7 @@
                             <div id="scheduler">
                                 <Event 
                                     title="Meeting"
-                                    startTime={dayjs("2021-03-17T23:00:00Z")}
+                                    startTime={dayjs("2021-03-17T12:48:00Z")}
                                     endTime={dayjs("2021-03-17T23:30:00Z")}
                                 />
                             </div>
@@ -189,9 +193,16 @@
 
             console.log(startRow, endRow)
 
+            let dayOfWeek = startTime.day()
+            console.log(dayOfWeek)
+            if (dayOfWeek === 0) {
+                dayOfWeek = 7;
+            }
+
             return (
                 <div className="event" style={{
-                    gridRow: `${startRow} / ${endRow}`
+                    gridRow: `${startRow} / ${endRow}`,
+                    gridColumn: `${dayOfWeek} / ${dayOfWeek}`
                 }}>
                     {title} {startTime.format("HH:mm")}-{endTime.format("HH:mm")}
                 </div>
