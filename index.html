@@ -28,6 +28,7 @@
             background: red;
             grid-template-columns: repeat(7, 1fr);
             grid-template-rows: repeat(calc(24 * 60), 1fr);
+            font-size: 10pt;
         }
 
 
@@ -178,9 +179,20 @@
         }
 
         function Event({ startTime, endTime, title}) {
-            
+            const startHour = parseInt(startTime.format("HH"));
+            const startMin = parseInt(startTime.format("mm"));
+            const startRow = startHour * 60 + startMin;
+
+            const endHour = parseInt(endTime.format("HH"));
+            const endMin = parseInt(endTime.format("mm"));
+            const endRow = endHour * 60 + endMin;
+
+            console.log(startRow, endRow)
+
             return (
-                <div className="event">
+                <div className="event" style={{
+                    gridRow: `${startRow} / ${endRow}`
+                }}>
                     {title} {startTime.format("HH:mm")}-{endTime.format("HH:mm")}
                 </div>
             )
